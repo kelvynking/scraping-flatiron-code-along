@@ -2,9 +2,9 @@
 
 ## Objectives
 
-* Scrape a web page's HTML using Nokogiri.
-* Use scraped data to give attributes to Ruby objects.
-* Write an object-oriented Scraper class.
+- Scrape a web page's HTML using Nokogiri.
+- Use scraped data to give attributes to Ruby objects.
+- Write an object-oriented Scraper class.
 
 ## Overview
 
@@ -22,7 +22,7 @@ responsible for taking that data and using it to instantiate instances of the
 
 ## Code Along I: The `Course` Class
 
-***Fork and clone this lab to get started!***
+**_Fork and clone this lab to get started!_**
 
 Before we build our `Scraper`, we'll build the `Course` class. We know that the
 purpose of our scraper is to get data to assign to the attributes of `Course`
@@ -47,7 +47,7 @@ class Course
 end
 ```
 
-Now, let's run *just* the `Course` specs by typing `rspec spec/course_spec.rb`
+Now, let's run _just_ the `Course` specs by typing `rspec spec/course_spec.rb`
 in the terminal. You should see the following test output:
 
 ![spec error output](http://readme-pics.s3.amazonaws.com/Screen%20Shot%202015-08-20%20at%202.53.11%20PM.png)
@@ -130,7 +130,7 @@ is to scrape data and make real live Ruby objects with it.
 
 Now that we have a basic concept of the methods we're expected to build, we're
 going to ignore them (surprise!). We've already discussed how tricky it is to
-scrape data from a web page. It is a very precise process and it takes *a lot*
+scrape data from a web page. It is a very precise process and it takes _a lot_
 of playing around in Pry to find the right CSS selectors for the desired data.
 So, we're going to start by building our `#get_page` method. **As soon as we get
 the HTML document using Nokogiri, we will drop into our program using Pry and
@@ -191,8 +191,7 @@ end
 Scraper.new.get_page
 ```
 
-Once your file looks like the code above, run the file with `ruby
-lib/scraper.rb` in your terminal. Once you hit your binding, type the `doc`
+Once your file looks like the code above, run the file with `ruby lib/scraper.rb` in your terminal. Once you hit your binding, type the `doc`
 variable into the terminal and you should see the HTML document, retrieved for
 us by Nokogiri and open-uri. You should see something like this:
 
@@ -221,11 +220,11 @@ that lists the course offerings. Right click on any course offering and select
 Let's take a closer look at the highlighted line in the element inspector:
 
 ```html
-<article class="post same-height-left" style="height: 489px;">
+<article class="post same-height-left" style="height: 489px;"></article>
 ```
 
 Looks like the element that contains an individual course has a class of "post".
-Let's use this CSS selector of `.post` to try to grab *all* courses.
+Let's use this CSS selector of `.post` to try to grab _all_ courses.
 
 Go back to your terminal and execute the following line:
 
@@ -255,7 +254,7 @@ schedule and description of each one.
 We know that a collection of Nokogiri XML elements functions like an array. So,
 it makes sense that we can iterate over the collection with an enumerator like
 `.each` or `.collect` in order to grab the title, schedule and description of
-each one. BUT, before we worry about iterating, lets grab *just one element* and
+each one. BUT, before we worry about iterating, lets grab _just one element_ and
 try to identify the correct CSS selectors for title, schedule and description.
 
 In your terminal, execute `doc.css(".post").first`. This will grab us just the
@@ -263,7 +262,7 @@ first element from the collection. You should see something like this:
 
 ![first doc.css output](http://readme-pics.s3.amazonaws.com/Screen%20Shot%202015-08-20%20at%204.52.21%20PM.png)
 
-This describes *just one course offering*. If you look closely, you'll see it
+This describes _just one course offering_. If you look closely, you'll see it
 contains all the info we need. You can see the title, the schedule and the
 description. The easiest way to ID the correct CSS selector for extracting this
 information, however, is to revisit the web page and examine a course offering
@@ -277,7 +276,7 @@ pointing into a box) then hover over the title of the first course offering. You
 should see a tag appear when you hover over the course title with this tool. The
 tag should say `h2 750.428 x 28px`.
 
-We don't care about the height and width but we *do* care about the selector,
+We don't care about the height and width but we _do_ care about the selector,
 `h2`.
 
 Test the following code in your terminal:
@@ -336,8 +335,7 @@ get that description.
 #### Scraping Course Description
 
 Once again, use the selector tool to hover over the first course's description.
-You should see a tag appear with the following text: `p 750. blah blah some
-pixels`. Okay, it looks like we have our selector: the `p` tag.
+You should see a tag appear with the following text: `p 750. blah blah some pixels`. Okay, it looks like we have our selector: the `p` tag.
 
 Try out the following line in your console:
 
@@ -353,16 +351,16 @@ You should see returned to you:
 
 We did it! We have the working code for grabbing:
 
-* The page itself:
-  * `doc = Nokogiri::HTML(open("http://learn-co-curriculum.github.io/site-for-scraping/courses"))`
-* The collection of course offerings:
-  * `doc.css(".post")`
-* The title of an individual course offering:
-  * `doc.css(".post").first.css("h2").text`
-* The schedule of an individual course offering:
-  * `doc.css(".post").first.css(".date").text`
-* The description of an individual course offering:
-  * `doc.css(".post").first.css("p").text`
+- The page itself:
+  - `doc = Nokogiri::HTML(open("http://learn-co-curriculum.github.io/site-for-scraping/courses"))`
+- The collection of course offerings:
+  - `doc.css(".post")`
+- The title of an individual course offering:
+  - `doc.css(".post").first.css("h2").text`
+- The schedule of an individual course offering:
+  - `doc.css(".post").first.css(".date").text`
+- The description of an individual course offering:
+  - `doc.css(".post").first.css("p").text`
 
 Now we're ready to use our code to create `Course` objects and give them
 attributes.
@@ -427,16 +425,16 @@ that we scraped from the website. We are such good programmers.
 
 ### Extracting Our Code into Methods
 
-Okay, we have some great working code. But, it doesn't really *all* belong in
-the `#get_page` method. The `#get_page` method should be responsible for *just
-getting the page*. Let's do some refactoring and get our `Scraper` tests
+Okay, we have some great working code. But, it doesn't really _all_ belong in
+the `#get_page` method. The `#get_page` method should be responsible for _just
+getting the page_. Let's do some refactoring and get our `Scraper` tests
 passing!
 
 #### `#get_page`
 
-This method should contain *only the code for getting the HTML document*. Place
-the following code in your `#get_page` method and *comment out the rest of that
-method*. We'll need to refer to that code to get our other tests passing.
+This method should contain _only the code for getting the HTML document_. Place
+the following code in your `#get_page` method and _comment out the rest of that
+method_. We'll need to refer to that code to get our other tests passing.
 
 ```ruby
 require 'nokogiri'
